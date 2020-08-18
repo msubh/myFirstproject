@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "5e288887-7510-4915-98f9-78efa3a2492f",
+		"name": "PetStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f9d4daa-3abc-44d7-88dd-b4f58abff8b8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1341,\r\n  \"category\": {\"id\": 1341,\"name\": \"string\"},\r\n  \"name\": \"ellie\", \r\n  \"photoUrls\": [\"string\"],\r\n  \"tags\": [{\"id\": 1341,\"name\": \"string\"}],\r\n  \"status\": \"available\"\r\n}"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Pet by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "54c820fd-cbb7-4983-b593-00e94eeec372",
+						"exec": [
+							"pm.test(\"Verify Pet name\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"ellie\");",
+							"});",
+							"pm.test(\"Verify Pet id\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1341\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/1341",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"1341"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
